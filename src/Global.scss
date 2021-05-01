@@ -1,0 +1,42 @@
+@import './vars.scss';
+
+body {
+    padding: 0;
+    margin: 0;
+    /* background-color: #f1f2f0; */
+}
+
+h1, h2, h3 {
+    font-family: "Prophet", sans-serif;
+    font-weight: 400;
+    margin: 2rem 0 0;
+}
+
+
+p {
+    font-family: "Soehne", monospace;
+    font-weight: 400;
+    margin: 0 0 1rem;
+}
+
+p strong {
+    font-family: "Prophet";
+}
+
+@include respond-to(phone) {
+    html {
+        font-size: 10pt;
+    }
+    h1 {
+        font-size: 1.75rem;
+    }
+}
+
+@include respond-to(desktop) {
+    html {
+        font-size: 18pt;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+}

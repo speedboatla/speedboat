@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import sanityClient from '@sanity/client';
-import './Global.css';
+import './Global.scss';
 
-import Projects from './components/Projects';
+import Content from './components/Content';
 import Header from './components/Header';
+import Footer from './components/Footer';
+import About from './components/About';
+
 
 const client = sanityClient({
-    projectId: 'tfzftnd4',
+    projectId: '68oztumj',
     dataset: 'production',
     apiVersion: '2020-04-20',
     token: '',
@@ -21,27 +24,39 @@ class App extends React.Component {
     }
 
     state = {
-        projects: []
+        contentBlocks: [],
+        about: false
     }
 
     getProjects = async () => {
-        const query = '*[_type == "project"]{title, role, collaborators, thumbnail{asset->}}';
+        const query = '*[_type == "homeContent"]{contentBlocks[]{asset->{...}, ...}, title}';
         try {
             const response = await client.fetch(query);
             console.log(response);
             this.setState({
-                projects: response
+                contentBlocks: response[0].contentBlocks
             });
         } catch {
             console.log("error");
         }
     }
 
+    toggleAbout = (newAbout = !this.state.about) => {
+        if (newAbout && this.state.alignTop) {
+            this.setState({about: newAbout, alignTop: false});
+        } else if (!newAbout && this.state.alignTop) {
+            this.setState({about: newAbout, alignTop: false})
+        } else {
+            this.setState({about: newAbout});
+        }
+    }
+
     render() {
         return (
-            <div>
-                <Header />
-                <Projects projects={this.state.projects} />
+            <div className="wrapper">
+                <Header toggleAbout={this.toggleAbout} about={this.state.about}/>
+                {this.state.about ? <About /> : <Content contentBlocks={this.state.contentBlocks} />}
+                <Footer />
             </div>
         )
     }

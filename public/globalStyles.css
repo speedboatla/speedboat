@@ -1,12 +1,12 @@
-body {
-    padding: 0;
-    margin: 0;
+@font-face {
+    font-family: "Soehne";
+    src: url("/fonts/soehne-web-buch.woff");
+    font-weight: 400;
 }
 
-h1, h2, h3 {
-    font-family: "Barlow", sans-serif;
-    font-weight: 700;
+@font-face {
+    font-family: "Prophet";
+    src: url("/fonts/ABCProphet-Regular.woff");
+    font-weight: 400;
 }
-p {
-    font-family: "Roboto Mono", monospace;
-}
+

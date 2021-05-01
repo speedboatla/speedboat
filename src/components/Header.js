@@ -1,13 +1,10 @@
 import React from 'react';
-import GauchoSVG from './GauchoSVG';
-import About from './About';
-import Menu from './Menu';
-import './Header.css';
+import './Header.scss';
+
 
 class Header extends React.Component {
     state = {
         alignTop: true,
-        about: false
     }
 
     componentDidMount() {
@@ -26,25 +23,32 @@ class Header extends React.Component {
         this.setState({alignTop: newAlignTop});
     }
 
-    toggleAbout = (newAbout = !this.state.about) => {
-        if (newAbout && this.state.alignTop) {
-            this.setState({about: newAbout, alignTop: false});
-        } else if (!newAbout && this.state.alignTop) {
-            this.setState({about: newAbout, alignTop: false})
-        } else {
-            this.setState({about: newAbout});
-        }
-    }
+    
 
     render() {
         return (
-            <div className={this.state.alignTop ? "top header" : "bottom header"}>
-                {this.state.about ? <About /> : ""}
-                <Menu 
-                 toggleAbout={this.toggleAbout} 
-                 about={this.state.about}
-                />
-                <GauchoSVG />
+            <div className={this.state.alignTop ? "big header" : "small header"}>
+                <div className="innerHeader">
+                    <h1>Speedboat Projects</h1>
+                    <button
+                    className={this.props.about ? "menuItem desktop" : "menuItem desktop active"}
+                    onClick={() => this.props.toggleAbout(false)}
+                    >
+                        WORK
+                    </button>
+                    <button 
+                    className={this.props.about ? "menuItem desktop active" : "menuItem desktop"}
+                    onClick={() => this.props.toggleAbout(true)}
+                    >
+                        ABOUT
+                    </button>
+                    <button 
+                    className={"menuItem phone active"}
+                    onClick={() => this.props.toggleAbout()}
+                    >
+                        {this.props.about ? "WORK" : "ABOUT"}
+                    </button>
+                </div>
             </div>
         );
     }

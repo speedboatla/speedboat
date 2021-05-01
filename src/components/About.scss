@@ -1,0 +1,25 @@
+@import '../vars';
+
+.about {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: calc(1600px + 4rem);
+    padding: 5rem 2rem;
+    margin: 0 auto;
+    @include respond-to(desktop) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 4rem;
+    }
+    @include respond-to(phone) {
+        padding: 4rem 10px 8rem;
+        max-width: unset;
+    }
+
+    .aboutContent {
+
+    }
+    .teamMembers {
+
+    }
+}

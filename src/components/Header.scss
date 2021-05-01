@@ -1,0 +1,69 @@
+@import '../vars';
+.header {
+    position: fixed;
+    width: 100%;
+    padding: 0.5rem 2rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    backdrop-filter: blur(6px);
+    opacity: 0.8;
+    z-index: 3;
+    @include respond-to(phone) {
+        padding: 10px;
+    }
+
+    .innerHeader {
+        max-width: 1600px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        h1 {
+            display: inline;
+            flex-grow: 1;
+            margin: 0;
+            line-height: 1em;
+        }
+        button {
+            flex-grow: 0;
+            font-size: 2rem;
+            font-family: "Prophet";
+            background: none;
+            display: inline;
+            border: none;
+            box-sizing: border-box;
+            text-align: center;
+            list-style: none;
+            padding: 0 1rem;
+            margin-left: 1rem;
+            color: grey;
+            letter-spacing: 0.1rem;
+            @include respond-to(phone) {
+                padding: 0.1rem 0.6rem;
+                border-radius: 0.6rem;
+                &.desktop {
+                    display:none;
+                }
+                &.phone {
+                    border: 1px solid black;
+                }
+            }
+            @include respond-to(desktop) {
+                &.phone {
+                    display: none;   
+                }
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+            &.active {
+                color:black;
+            }
+        }
+    }
+}
