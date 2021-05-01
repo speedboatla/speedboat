@@ -6,7 +6,7 @@ class ImageBlock extends React.Component {
         console.log(this.props);
         return (
             <div className="imageBlock">
-                <img src={this.props.content.asset.url} key={this.props.content._key} />
+                <img src={this.props.content.asset.url} key={this.props.content._key} alt={this.props.content._key} />
             </div>
         )
     }
