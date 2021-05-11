@@ -10,3 +10,11 @@
     font-weight: 400;
 }
 
+::selection {
+    background: blue; /* WebKit/Blink Browsers */
+    color: white;
+  }
+::-moz-selection {
+    background: blue; /* Gecko Browsers */
+    color: white;
+}

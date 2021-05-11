@@ -28,7 +28,7 @@ class App extends React.Component {
     }
 
     watchScroll = (event) => {
-        if (((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) && !this.state.loading) {
+        if (((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) && !this.state.loading && !this.state.about) {
             this.setState({loading: true});
             this.getProjects();
         }

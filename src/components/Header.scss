@@ -50,7 +50,6 @@
             padding: 0 1rem;
             margin-left: 1rem;
             color: grey;
-            letter-spacing: 0.1rem;
             @include respond-to(phone) {
                 padding: 0.1rem 0.6rem;
                 border-radius: 0.6rem;
@@ -58,7 +57,11 @@
                     display:none;
                 }
                 &.phone {
-                    border: 1px solid black;
+                    border: 1px solid blue;
+                }
+                &:active {
+                    background-color: blue;
+                    color: white !important;
                 }
             }
             @include respond-to(desktop) {

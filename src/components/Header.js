@@ -22,7 +22,7 @@ class Header extends React.Component {
 
         if ((this.currentScrollpos > this.lastScrollPos) && this.state.alignTop) {
             this.setState({alignTop: false});
-        } else if ((this.currentScrollpos < this.lastScrollPos) && !this.state.alignTop) {
+        } else if ((this.currentScrollpos <= this.lastScrollPos) && !this.state.alignTop) {
             this.setState({alignTop: true});
         }
 

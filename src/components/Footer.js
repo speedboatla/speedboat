@@ -23,7 +23,7 @@ class Footer extends React.Component {
 
         if ((this.currentScrollpos > this.lastScrollPos) && this.state.show) {
             this.setState({show: false});
-        } else if ((this.currentScrollpos < this.lastScrollPos) && !this.state.show) {
+        } else if ((this.currentScrollpos <= this.lastScrollPos) && !this.state.show) {
             this.setState({show: true});
         }
 
