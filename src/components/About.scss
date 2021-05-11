@@ -12,7 +12,7 @@
         column-gap: 4rem;
     }
     @include respond-to(phone) {
-        padding: 4rem 10px 8rem;
+        padding: 2rem 10px 8rem;
         max-width: unset;
     }
 }

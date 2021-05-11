@@ -3,33 +3,42 @@ import './Header.scss';
 
 
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+        this.lastScrollPos = 0;
+        this.currentScrollpos = 0;
+    }
+
     state = {
         alignTop: true,
     }
 
     componentDidMount() {
-        window.addEventListener('wheel', this.watchScroll);
+        window.addEventListener('scroll', this.watchScroll);
     }
 
     watchScroll = (event) => {
-        if (event.deltaY > 0) {
+        this.currentScrollpos = window.pageYOffset;
+
+        if ((this.currentScrollpos > this.lastScrollPos) && this.state.alignTop) {
             this.setState({alignTop: false});
-        } else {
+        } else if ((this.currentScrollpos < this.lastScrollPos) && !this.state.alignTop) {
             this.setState({alignTop: true});
         }
+
+        this.lastScrollPos = this.currentScrollpos;
     }
 
     toggleTopAlign = (newAlignTop = !this.state.alignTop) => {
         this.setState({alignTop: newAlignTop});
     }
-
     
 
     render() {
         return (
-            <div className={this.state.alignTop ? "big header" : "small header"}>
+            <div className={this.state.alignTop ? "header" : "hide header"}>
                 <div className="innerHeader">
-                    <h1>Speedboat Projects</h1>
+                    <h1>SPEEDBOAT</h1>
                     <button
                     className={this.props.about ? "menuItem desktop" : "menuItem desktop active"}
                     onClick={() => this.props.toggleAbout(false)}

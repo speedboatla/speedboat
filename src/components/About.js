@@ -59,7 +59,7 @@ class About extends React.Component {
     mapTeamMembers = (teamMembers) => {
         return teamMembers.map( teamMember => {
             return (
-                <p>
+                <p key={teamMember.bio}>
                     <strong>{teamMember.firstName} {teamMember.lastName}</strong> {teamMember.bio}
                 </p>
             )

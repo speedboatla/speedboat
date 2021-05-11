@@ -9,7 +9,9 @@ class MarqueeBlock extends React.Component {
             <div className="marqueeBlock">
                 <Marquee
                  speed={100}
-                ><p>{this.props.content.value}</p></Marquee>
+                >
+                    <p>{this.props.content.value}</p>
+                </Marquee>
             </div>
         )
     }

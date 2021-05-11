@@ -23,18 +23,33 @@ class App extends React.Component {
         this.getProjects();
     }
 
+    componentDidMount() {
+        window.addEventListener('scroll', this.watchScroll);
+    }
+
+    watchScroll = (event) => {
+        if (((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) && !this.state.loading) {
+            this.setState({loading: true});
+            this.getProjects();
+        }
+    }
+
     state = {
+        loading: true,
+        blockIndex: 0,
         contentBlocks: [],
         about: false
     }
 
     getProjects = async () => {
-        const query = '*[_type == "homeContent"]{contentBlocks[]{asset->{...}, ...}, title}';
+        const query = `*[_type == "homeContent"]{contentBlocks[${this.state.blockIndex}...${this.state.blockIndex + 10}]{asset->{...}, ...}}`;
         try {
             const response = await client.fetch(query);
             console.log(response);
             this.setState({
-                contentBlocks: response[0].contentBlocks
+                contentBlocks: this.state.contentBlocks.concat(response[0].contentBlocks),
+                blockIndex: this.state.blockIndex + 10,
+                loading: false
             });
         } catch {
             console.log("error");
@@ -56,6 +71,7 @@ class App extends React.Component {
             <div className="wrapper">
                 <Header toggleAbout={this.toggleAbout} about={this.state.about}/>
                 {this.state.about ? <About /> : <Content contentBlocks={this.state.contentBlocks} />}
+                {this.state.loading ? <p style={{textAlign: "center"}}>LOADING...</p> : null}
                 <Footer />
             </div>
         )
