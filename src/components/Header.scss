@@ -37,8 +37,13 @@
         button {
             flex-grow: 0;
             font-size: 2rem;
+            color: blue;
+            -webkit-user-select: none; /* Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+/Edge */
+user-select: none; /* Standard */
             @include respond-to(phone) {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
             font-family: "Prophet";
             background: none;
@@ -49,7 +54,6 @@
             list-style: none;
             padding: 0 1rem;
             margin-left: 1rem;
-            color: grey;
             @include respond-to(phone) {
                 padding: 0.1rem 0.6rem;
                 border-radius: 0.6rem;
@@ -60,8 +64,8 @@
                     border: 1px solid blue;
                 }
                 &:active {
-                    background-color: blue;
-                    color: white !important;
+                    border: 1px solid white !important;
+                    background-color: white;
                 }
             }
             @include respond-to(desktop) {
@@ -74,7 +78,7 @@
                 cursor: pointer;
             }
             &.active {
-                color:black;
+                color:blue;
             }
         }
     }

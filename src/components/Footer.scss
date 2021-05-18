@@ -34,10 +34,19 @@
             margin: 0;
             padding: 0;
             list-style: none;
+            font-size: 2rem;
+            color: blue;
+            @include respond-to(phone) {
+                font-size: 1.4rem;
+                border: 1px solid blue;
+                padding: 0.1rem 0.6rem;
+                border-radius: 0.6rem;
+            }
+
             a {
                 text-decoration: none;
                 font-family: "Prophet";
-                color: black;
+                color: blue;
             }
         }
     }

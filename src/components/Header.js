@@ -19,11 +19,16 @@ class Header extends React.Component {
 
     watchScroll = (event) => {
         this.currentScrollpos = window.pageYOffset;
-
-        if ((this.currentScrollpos > this.lastScrollPos) && this.state.alignTop) {
-            this.setState({alignTop: false});
-        } else if ((this.currentScrollpos <= this.lastScrollPos) && !this.state.alignTop) {
-            this.setState({alignTop: true});
+        if (this.currentScrollpos > 20) {
+            if ( (this.currentScrollpos > this.lastScrollPos) && this.state.alignTop) {
+                this.setState({alignTop: false});
+            } else if ((this.currentScrollpos <= this.lastScrollPos) && !this.state.alignTop) {
+                this.setState({alignTop: true});
+            }
+        } else {
+            if (!this.state.alignTop) {
+                this.setState({alignTop: true});
+            }
         }
 
         this.lastScrollPos = this.currentScrollpos;

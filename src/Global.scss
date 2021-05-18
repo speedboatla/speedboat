@@ -10,6 +10,7 @@ h1, h2, h3 {
     font-family: "Prophet", sans-serif;
     font-weight: 400;
     margin: 2rem 0 0;
+    color: blue;
 }
 
 
@@ -17,18 +18,20 @@ p {
     font-family: "Soehne", monospace;
     font-weight: 400;
     margin: 0 0 1rem;
+    color: blue;
 }
 
 p strong {
-    font-family: "Prophet";
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 @include respond-to(phone) {
     html {
-        font-size: 17px;
+        font-size: 18px;
     }
-    h1 {
-        font-size: 1.5rem;
+    h1, h2 {
+        font-size: 1.4rem;
     }
 }
 
@@ -36,7 +39,7 @@ p strong {
     html {
         font-size: 18px;
     }
-    h1 {
+    h1, h2 {
         font-size: 2rem;
     }
 }
