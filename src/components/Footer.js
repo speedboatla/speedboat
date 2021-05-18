@@ -35,7 +35,6 @@ class Footer extends React.Component {
     }
 
     render() {
-        let mobile = window.innerWidth < 800;
         return (
             <div className={this.state.show ? "show footer" : "hide footer"} ref={this.footerEl}>
                 <ul className="footerList">
