@@ -56,24 +56,10 @@ class About extends React.Component {
         return parse(string);
     }
 
-    mapTeamMembers = (teamMembers) => {
-        return teamMembers.map( teamMember => {
-            return (
-                <p key={teamMember.bio}>
-                    <strong>{teamMember.firstName} {teamMember.lastName}</strong> {teamMember.bio}
-                </p>
-            )
-        });
-    }
-
     render() {
         return (
             <div className="about">
                 <div className="aboutContent">{this.mapRichText(this.state.aboutContent)}</div>
-                <div className="teamMembers">
-                    <h2>Team Members</h2>
-                    {this.mapTeamMembers(this.state.teamMembers)}
-                </div>
             </div>
         )
     }

@@ -24,6 +24,7 @@ p {
 p strong {
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    font-weight: 400;
 }
 
 @include respond-to(phone) {
