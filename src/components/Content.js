@@ -2,6 +2,7 @@ import React from 'react';
 import ImageBlock from './ImageBlock';
 import CarouselBlock from './CarouselBlock';
 import MarqueeBlock from './MarqueeBlock';
+import VimeoBlock from './VimeoBlock';
 import './Content.scss';
 
 class Content extends React.Component {
@@ -14,6 +15,8 @@ class Content extends React.Component {
                 return <CarouselBlock content={block} key={block._key}/>;
             } else if (block._type === "marqueeText") {
                 return <MarqueeBlock content={block} key={block._key}/>;
+            } else if (block._type === "vimeoLink") { 
+                return <VimeoBlock content={block} key={block._key} />;
             } else {
                 return "";
             }

@@ -42,7 +42,7 @@ class App extends React.Component {
     }
 
     getProjects = async () => {
-        const query = `*[_type == "homeContent"]{contentBlocks[${this.state.blockIndex}...${this.state.blockIndex + 10}]{asset->{...}, ...}}`;
+        const query = `*[_type == "homeContent"] {contentBlocks[${this.state.blockIndex}...${this.state.blockIndex + 10}]{asset->{...}, ...}}`;
         try {
             const response = await client.fetch(query);
             console.log(response);

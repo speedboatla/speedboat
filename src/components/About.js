@@ -16,12 +16,11 @@ class About extends React.Component {
     constructor() {
         super();
         this.getAboutContent();
-        this.getTeamMembers();
     }
 
     state = {
-        aboutContent: [],
-        teamMembers: [],
+        leftColumn: [],
+        rightColumn: [],
     }
 
     getAboutContent = async () => {
@@ -29,21 +28,12 @@ class About extends React.Component {
         try {
             const response = await client.fetch(query);
             console.log(response);
-            this.setState({
-                aboutContent: response[0].content
-            });
-        } catch {
-            console.log("error");
-        }
-    }
-
-    getTeamMembers = async () => {
-        const query = '*[_type == "teamMember"]{...}';
-        try {
-            const response = await client.fetch(query);
-            this.setState({
-                teamMembers: response
-            });
+            if (response[0].leftColumn) {
+                this.setState({leftColumn: response[0].leftColumn});
+            }
+            if (response[0].rightColumn) {
+                this.setState({rightColumn: response[0].rightColumn});
+            }
         } catch {
             console.log("error");
         }
@@ -57,9 +47,19 @@ class About extends React.Component {
     }
 
     render() {
+        const left = this.state.leftColumn.length > 0;
+        const right = this.state.rightColumn.length > 0;
+        let aboutContent = [];
+        if (left) {
+            aboutContent.push(<div className="aboutLeft">{this.mapRichText(this.state.leftColumn)}</div>);
+        }
+        if (right) {
+            aboutContent.push(<div className="aboutRight">{this.mapRichText(this.state.rightColumn)}</div>);
+        }
+
         return (
             <div className="about">
-                <div className="aboutContent">{this.mapRichText(this.state.aboutContent)}</div>
+                {aboutContent}
             </div>
         )
     }
