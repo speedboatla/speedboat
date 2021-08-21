@@ -34,7 +34,7 @@ class App extends React.Component {
     }
 
     watchScroll = (event) => {
-        if (((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) && this.state.loading === 'Not Loading.' && !this.state.about) {
+        if (((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) && this.state.loading === 'Not loading.' && !this.state.about) {
             this.setState({loading: 'Loading...'});
             this.getProjects();
         }
@@ -51,7 +51,7 @@ class App extends React.Component {
                 this.setState({
                     contentBlocks: this.state.contentBlocks.concat(response[0].contentBlocks),
                     blockIndex: this.state.blockIndex + 10,
-                    loading: 'Not Loading.',
+                    loading: 'Not loading.',
                 });
             } else {
                 this.setState({
@@ -79,7 +79,7 @@ class App extends React.Component {
             <div className="wrapper">
                 <Header toggleAbout={this.toggleAbout} about={this.state.about}/>
                 {this.state.about ? <About /> : <Content contentBlocks={this.state.contentBlocks} />}
-                {this.state.loading === "Not loading." ? null : <p style={{textAlign: "center"}}>{this.state.loading}</p>}
+                {this.state.loading === "Not loading." || this.state.about ? null : <p style={{textAlign: "center"}}>{this.state.loading}</p>}
                 <Footer />
             </div>
         )
