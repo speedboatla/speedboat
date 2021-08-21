@@ -20,6 +20,12 @@ const client = sanityClient({
 class App extends React.Component {
     constructor() {
         super();
+        this.state = {
+            loading: 'Loading...',
+            blockIndex: 0,
+            contentBlocks: [],
+            about: false
+        }
         this.getProjects();
     }
 
@@ -28,29 +34,31 @@ class App extends React.Component {
     }
 
     watchScroll = (event) => {
-        if (((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) && !this.state.loading && !this.state.about) {
-            this.setState({loading: true});
+        if (((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) && this.state.loading === 'Not Loading.' && !this.state.about) {
+            this.setState({loading: 'Loading...'});
             this.getProjects();
         }
     }
 
-    state = {
-        loading: true,
-        blockIndex: 0,
-        contentBlocks: [],
-        about: false
-    }
+    
 
     getProjects = async () => {
         const query = `*[_type == "homeContent"] {contentBlocks[${this.state.blockIndex}...${this.state.blockIndex + 10}]{asset->{...}, ...}}`;
         try {
             const response = await client.fetch(query);
-            console.log(response);
-            this.setState({
-                contentBlocks: this.state.contentBlocks.concat(response[0].contentBlocks),
-                blockIndex: this.state.blockIndex + 10,
-                loading: false
-            });
+
+            if (response[0].contentBlocks.length > 0) {
+                this.setState({
+                    contentBlocks: this.state.contentBlocks.concat(response[0].contentBlocks),
+                    blockIndex: this.state.blockIndex + 10,
+                    loading: 'Not Loading.',
+                });
+            } else {
+                this.setState({
+                    loading: 'No more posts.'
+                });
+                window.removeEventListener('scroll', this.watchScroll);
+            }
         } catch {
             console.log("error");
         }
@@ -71,7 +79,7 @@ class App extends React.Component {
             <div className="wrapper">
                 <Header toggleAbout={this.toggleAbout} about={this.state.about}/>
                 {this.state.about ? <About /> : <Content contentBlocks={this.state.contentBlocks} />}
-                {this.state.loading ? <p style={{textAlign: "center"}}>LOADING...</p> : null}
+                {this.state.loading === "Not loading." ? null : <p style={{textAlign: "center"}}>{this.state.loading}</p>}
                 <Footer />
             </div>
         )

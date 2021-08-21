@@ -11,10 +11,10 @@
 }
 
 ::selection {
-    background: blue; /* WebKit/Blink Browsers */
-    color: white;
+    background: yellow; /* WebKit/Blink Browsers */
+    color: rgb(241, 96, 101);;
   }
 ::-moz-selection {
-    background: blue; /* Gecko Browsers */
-    color: white;
+    background: yellow; /* Gecko Browsers */
+    color: rgb(241, 96, 101);;
 }

@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 1);
     backdrop-filter: blur(6px);
     z-index: 3;
     transition: transform 0.5s ease;
@@ -37,7 +37,7 @@
         button {
             flex-grow: 0;
             font-size: 2rem;
-            color: blue;
+            color: rgb(241, 96, 101);
             -webkit-user-select: none; /* Safari */        
 -moz-user-select: none; /* Firefox */
 -ms-user-select: none; /* IE10+/Edge */
@@ -61,7 +61,7 @@ user-select: none; /* Standard */
                     display:none;
                 }
                 &.phone {
-                    border: 1px solid blue;
+                    border: 1px solid rgb(241, 96, 101);
                 }
                 &:active {
                     border: 1px solid white !important;
@@ -78,7 +78,7 @@ user-select: none; /* Standard */
                 cursor: pointer;
             }
             &.active {
-                color:blue;
+                color:rgb(241, 96, 101);
             }
         }
     }

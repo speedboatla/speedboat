@@ -14,10 +14,10 @@ class Header extends React.Component {
     }
 
     componentDidMount() {
-        window.addEventListener('scroll', this.watchScroll);
+        window.addEventListener('scroll', this.watchScrollHeader);
     }
 
-    watchScroll = (event) => {
+    watchScrollHeader = (event) => {
         this.currentScrollpos = window.pageYOffset;
         if (this.currentScrollpos > 20) {
             if ( (this.currentScrollpos > this.lastScrollPos) && this.state.alignTop) {
@@ -30,7 +30,6 @@ class Header extends React.Component {
                 this.setState({alignTop: true});
             }
         }
-
         this.lastScrollPos = this.currentScrollpos;
     }
 
