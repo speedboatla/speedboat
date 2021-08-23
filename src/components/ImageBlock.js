@@ -30,23 +30,28 @@ class ImageBlock extends React.Component {
                     {this.state.componentWidth > 0 ?
                         this.props.content.asset.url.includes("svg") ?
                             [
-                                <div className="colorCover svg" key={this.props.content._key + "colorBlock"}></div>,
+                                <div className="colorContain svg" key={this.props.content._key + "colorBlock"}>
+                                    <div className="colorCover"></div>
                                 <img 
                                     src={this.props.content.asset.url + `?w=${this.state.componentWidth}`} 
                                     key={this.props.content._key} 
                                     alt={this.props.content._key} 
                                     onLoad={() => {this.setState({loaded: true})}}
-                                />,
+                                    style={{width: `${this.state.componentWidth}px`, height: 'auto'}}
+                                />
+                                </div>,
                                 <p className="caption" key={this.props.content._key + "caption"}>{this.props.content.caption}</p>
                             ]
                         :   [
-                                <div className="colorCover" key={this.props.content._key + "colorBlock"}></div>,
+                                <div className="colorContain" key={this.props.content._key + "colorBlock"}>
+                                    <div className="colorCover"></div>
                                     <img 
                                         src={this.props.content.asset.url + `?w=${this.state.componentWidth}`} 
                                         key={this.props.content._key} 
                                         alt={this.props.content._key} 
                                         onLoad={() => {this.setState({loaded: true})}}
-                                    />,
+                                    />
+                                    </div>,
                                     <p className="caption" key={this.props.content._key + "caption"}>{this.props.content.caption}</p>
                             ]
                     : null}

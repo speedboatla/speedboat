@@ -39,7 +39,6 @@ class App extends React.Component {
             this.getProjects();
         }
     }
-
     
 
     getProjects = async () => {
@@ -64,6 +63,7 @@ class App extends React.Component {
         }
     }
 
+
     toggleAbout = (newAbout = !this.state.about) => {
         if (newAbout && this.state.alignTop) {
             this.setState({about: newAbout, alignTop: false});
@@ -74,6 +74,7 @@ class App extends React.Component {
         }
     }
 
+    
     render() {
         return (
             <div className="wrapper">

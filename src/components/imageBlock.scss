@@ -1,8 +1,13 @@
 .imageBlock {
     position: relative;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 0;
     box-sizing: border-box;
+    margin-top: 2rem;
+
     &:hover, &.visible {
         .colorCover {
             opacity: 0;
@@ -16,10 +21,8 @@
         margin: 0;
         display: block;
         position: relative;
-        width: 100% !important;
-        height: unset !important;
         filter: grayscale(1);
-        transition: filter 0.5s ease;
+        transition: filter 1.25s ease;
     }
     p.caption {
         margin: 0;
@@ -27,20 +30,26 @@
         display: block;
     }
 
-    .colorCover {
-        background-color: rgb(250, 96, 101);;
-        position: absolute;
-        z-index: 2;
-        top: 0;
-        height: 100%;
-        width: 100%;
-        mix-blend-mode: screen;
-        box-sizing: border-box;
-        transition: opacity 0.5s ease;
-
+    .colorContain {
+        position: relative;
+        // background-color: rgb(250, 96, 101);
+        // transition: opacity 1s ease;
         &.svg {
-            mix-blend-mode: multiply;
-            opacity: 0.85;
+            .colorCover {
+                mix-blend-mode: multiply;
+            }
+        }
+
+        .colorCover {
+            background-color: rgb(250, 96, 101);
+            mix-blend-mode: screen;
+            transition: opacity 1.25s ease;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            z-index: 2;
+            box-sizing: border-box;
         }
     }
+    
 }
